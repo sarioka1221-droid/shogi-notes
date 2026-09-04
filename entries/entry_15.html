@@ -111,7 +111,8 @@ const PROMOTE = {'歩':'と','香':'杏','桂':'圭','銀':'全','角':'馬','�
 const SFEN_TO_BASE = {'P':'歩','L':'香','N':'桂','S':'銀','G':'金','B':'角','R':'飛','K':'王'};
 
 function parseSfen(sfen){
-  const parts = sfen.trim().split(/\s+/);
+  const cleaned = sfen.trim().replace(/^position\s+sfen\s+/i, '').replace(/^sfen\s+/i, '');
+  const parts = cleaned.split(/\s+/);
   const rows = parts[0].split('/');
   const newBoard = Array.from({length:9}, () => Array(9).fill(null));
   for(let r=0;r<9;r++){
